@@ -9,13 +9,13 @@ from bs4 import BeautifulSoup
 t_shirts = ['blue vineyard vines', 'pink vineyard vines']
 long_shirts = ['button-1', 'button-2', 'button-3']
 
-shirts = [t_shirts, long_shirts]
+shirts = [t_shirts.copy(), long_shirts.copy()]
 
 # Pants
 slacks = ['khakis-1', 'khakis-2']
 shorts = ['black vans', 'vineyard shorts', 'eagle shorts']
 
-pants = [shorts, slacks]
+pants = [shorts.copy(), slacks.copy()]
 
 # Shoes
 shoes = ['sambas', 'nmd', 'sperrys']
@@ -30,7 +30,6 @@ for forecast in forecast_items[1:6]:
     temp.append(forecast.select("div")[0].get_text())
 
 forecast = temp
-print(forecast)
 
 if forecast == []:
     print('Site is not being scraped rn')
@@ -81,19 +80,18 @@ for day in weekdays:
 
 def select_clothes(drawer, num, typeof):
     if len(drawer[num]) > 0:
-        print(drawer[num])
         clothing = drawer[num].pop(randint(0, len(drawer[num])-1))
     else:
         if typeof == 'pants':
             drawer = [shorts, slacks]
         elif typeof == 'shirts':
             drawer = [t_shirts, long_shirts]
-        print('----------')
-        print(typeof)
-        print(drawer)
-        print(day_dict[weekdays[weekdays.index(day) - 1]].get_clothes()[num])
-        drawer.remove(day_dict[weekdays[weekdays.index(day) - 1]].get_clothes()[num])
-        clothing = drawer[num].pop(randint(0, len(drawer[num])))
+        for item in drawer:
+            try:
+                item.remove(day_dict[weekdays[weekdays.index(day) - 1]].get_clothes()[num])
+            except ValueError:
+                pass
+        clothing = drawer[num].pop(randint(0, len(drawer[num])-1))
 
     return clothing
 
