@@ -1,14 +1,2 @@
 
 
-monday:
-	Work: wear shorts and a short sleeve shirt
-tuesday:
-	Work: wear shorts and a short sleeve shirt
-wednesday:
-	Work: wear long pants and a long sleeve shirt
-	bring a sweater
-thursday:
-	Work: wear long pants and a long sleeve shirt
-friday:
-	Work: wear long pants and a long sleeve shirt
-	bring a sweater
