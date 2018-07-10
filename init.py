@@ -31,6 +31,8 @@ for forecast in forecast_items[1:6]:
 
 forecast = temp
 
+outfits = []
+
 if forecast == []:
     print('Site is not being scraped rn')
     sys.exit()
@@ -53,22 +55,17 @@ class Report:
         avg = (self.low + self.high)/2
         return avg
 
-    def get_top(self):
-        return self.top
-
-    def get_bottom(self):
-        return self.bottom
-
-    def get_shoe(self):
-        return self.shoe
-
-    def get_sweater(self):
-        return self.sweater
-
-    def get_belt(self):
-        return self.belt
-
     def get_clothes(self):
+        if self.sweater:
+            self.sweater = "Take a sweater"
+        else:
+            self.sweater = "Don't take a sweater"
+
+        if self.belt:
+            self.belt = "Take a belt"
+        else:
+            self.belt = "Don't take a belt"
+
         return self.top, self.bottom, self.shoe, self.sweater, self.belt
 
 
@@ -108,9 +105,9 @@ for day in day_dict:
     day_obj.bottom = select_clothes(pants, number, 'pants')
 
     if day_obj.low <= 58 and day in ('monday', 'wednesday', 'friday'):
-        sweater = True
+        day_obj.sweater = True
     else:
-        sweater = False
+        day_obj.sweater = False
 
     if day_obj.bottom != 'black vans':
         day_obj.belt = True
@@ -121,18 +118,21 @@ for day in day_dict:
         day_obj.top = 'blue riot'
         day_obj.shoe = shoes[randint(0,1)]
 
-    print(day_obj.get_clothes())
+    outfits.append((day_obj.get_clothes()))
+
+for outfit in outfits:
+    output_file.write("{}\n".format(outfit))
 output_file.close()
-#
-# file = open('message.txt', 'r')
-#
-# server = smtplib.SMTP('smtp.gmail.com', 587)
-# server.starttls()
-# server.login("nicholasmasri@gmail.com", "nick91700")
-#
-# msg = file.read()
-# print(msg)
-# server.sendmail("nicholasmasri@gmail.com", "masrin123@hotmail.com", msg)
-# server.quit()
-#
-# output_file.close()
+
+file = open('message.txt', 'r')
+
+server = smtplib.SMTP('smtp.gmail.com', 587)
+server.starttls()
+server.login("nicholasmasri@gmail.com", "nick91700")
+
+msg = file.read()
+print(msg)
+server.sendmail("nicholasmasri@gmail.com", "masrin123@hotmail.com", msg)
+server.quit()
+
+output_file.close()

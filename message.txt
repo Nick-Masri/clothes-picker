@@ -1,2 +1,7 @@
 
 
+('pink vineyard vines', 'vineyard shorts', 'sperrys', "Don't take a sweater", 'Take a belt')
+('blue riot', 'black vans', 'nmd', "Don't take a sweater", "Don't take a belt")
+('button-1', 'khakis-2', 'sperrys', "Don't take a sweater", 'Take a belt')
+('button-3', 'khakis-1', 'sperrys', "Don't take a sweater", 'Take a belt')
+('blue vineyard vines', 'eagle shorts', 'sperrys', 'Take a sweater', 'Take a belt')
