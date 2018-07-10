@@ -1,6 +1,5 @@
 import random
 import requests
-from email.mime.text import MIMEText
 import smtplib
 from bs4 import BeautifulSoup
 
@@ -55,7 +54,7 @@ for average in averages_dict:
     else:
         output_file.write('{}:\n\tWork: wear long pants and a long sleeve shirt'.format(average))
 
-    if forecast_dict['{}_low'.format(average)] <= 58:
+    if forecast_dict['{}_low'.format(average)] <= 58 and average in ('monday', 'wednesday', 'friday'):
         output_file.write('\n\tbring a sweater')
 
 
